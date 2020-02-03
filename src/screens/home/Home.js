@@ -108,7 +108,7 @@ export default class Home extends React.Component {
           onFilter={this.filterData}
         />
         <div className="card-wrapper">
-          {filterImages
+          {filterImages && filterImages.length > 0
             ? filterImages.map(img => (
                 <Card className="card" key={img.id}>
                   <CardHeader
@@ -168,7 +168,7 @@ export default class Home extends React.Component {
                         className="comment-form"
                       >
                         <InputLabel htmlFor="comment">Add a comment</InputLabel>
-                        <Input id="comment" className="comment-input" />
+                        <Input className="comment-input" />
                         <Button variant="contained" color="primary">
                           ADD
                         </Button>

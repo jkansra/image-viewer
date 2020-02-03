@@ -28,13 +28,19 @@ export default class Header extends React.Component {
     window.location = "/";
   };
   render() {
-    const { homepageHeader, url } = this.props;
+    const { homepageHeader, url, goToHome } = this.props;
     const { showDropdown } = this.state;
     return (
       <React.Fragment>
         {homepageHeader ? (
           <div className="logo-home">
-            <span>Image Viewer</span>
+            {goToHome ? (
+              <a href="/home" className="profile-page-logo">
+                Image Viewer
+              </a>
+            ) : (
+              <span>Image Viewer</span>
+            )}
             <div className="search-profile-wrapper">
               <Input
                 id="username"
@@ -57,11 +63,11 @@ export default class Header extends React.Component {
               </IconButton>
               {showDropdown ? (
                 <div className="dropdown">
-                  <p className="option" onClick={this.goToProfile}>
+                  <p className="option account" onClick={this.goToProfile}>
                     My Account
                   </p>
                   <hr></hr>
-                  <p className="option" onClick={this.logout}>
+                  <p className="option logout" onClick={this.logout}>
                     Logout
                   </p>
                 </div>
