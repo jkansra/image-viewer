@@ -22,6 +22,7 @@ export default class Profile extends React.Component {
       counts: {},
       fullName: "",
       updatedFullname: "",
+      emptyFullname: false,
       openModal: false,
       response: []
     };
@@ -76,13 +77,26 @@ export default class Profile extends React.Component {
   updateFullname = () => {
     const { updatedFullname } = this.state;
     if (updatedFullname.trim() !== "") {
-      this.setState({ fullName: updatedFullname });
+      this.setState({
+        fullName: updatedFullname,
+        openModal: false,
+        emptyFullname: false,
+        updatedFullname: ""
+      });
+    } else {
+      this.setState({ emptyFullname: true });
     }
-    this.setState({ openModal: false });
   };
 
   render() {
-    const { profilePic, username, counts, fullName, openModal } = this.state;
+    const {
+      profilePic,
+      username,
+      counts,
+      fullName,
+      openModal,
+      emptyFullname
+    } = this.state;
     return (
       <div className="profile-wrapper">
         <Header url={profilePic} homepageHeader={true} goToHome={true} />
@@ -124,6 +138,9 @@ export default class Profile extends React.Component {
                       fullWidth
                       onChange={e => this.handleChange(e, "updatedFullname")}
                     />
+                    {emptyFullname ? (
+                      <span className="error">required</span>
+                    ) : null}
                   </DialogContent>
                   <DialogActions>
                     <Button
