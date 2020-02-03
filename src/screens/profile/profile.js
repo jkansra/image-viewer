@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "../../common/Header";
 import {
   Avatar,
   Fab,
@@ -10,8 +9,11 @@ import {
   DialogContent,
   TextField
 } from "@material-ui/core";
+
+import Header from "../../common/Header";
 import EditIcon from "@material-ui/icons/Edit";
 import "./profile.css";
+import ImageGrid from "./imageGrid";
 
 export default class Profile extends React.Component {
   constructor() {
@@ -95,7 +97,8 @@ export default class Profile extends React.Component {
       counts,
       fullName,
       openModal,
-      emptyFullname
+      emptyFullname,
+      response
     } = this.state;
     return (
       <div className="profile-wrapper">
@@ -155,6 +158,9 @@ export default class Profile extends React.Component {
               </div>
             </div>
           </div>
+        </div>
+        <div className="img-grid">
+          <ImageGrid posts={response} />
         </div>
       </div>
     );
